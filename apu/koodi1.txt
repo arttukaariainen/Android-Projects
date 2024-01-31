@@ -1,0 +1,85 @@
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        //adds items to the action bar
+        menuInflater.inflate(R.menu.mainmenu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handles presses on the action bar items
+        return when (item.itemId) {
+            R.id.profile -> {
+                Toast.makeText(applicationContext, "PROFILE", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.logOut -> {
+                Toast.makeText(applicationContext, "LOG OUT", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.action_account -> true
+            R.id.subPasswordChange -> {
+                Toast.makeText(applicationContext, "CHANGE PASSWORD", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.subUserSettings -> {
+                Toast.makeText(applicationContext, "USER SETTINGS", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.aboutUs -> {
+                Toast.makeText(applicationContext, "ABOUT US", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+}
+-------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="600dp">
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_profile"
+        app:showAsAction="ifRoom"
+        android:title="Profile" />
+
+    <item
+        android:id="@+id/logOut"
+        android:icon="@drawable/ic_sign_out"
+        app:showAsAction="always"
+        android:title="Sign out" />
+
+    <item
+        android:id="@+id/action_account"
+        android:orderInCategory="10"
+        android:title="Settings"
+        app:showAsAction="never"
+        android:visible="true">
+        <menu>
+            <item
+                android:id="@+id/subPasswordChange"
+                android:title="Change password"
+                android:orderInCategory="10"
+                android:visible="true" />
+            <item
+                android:id="@+id/subUserSettings"
+                android:title="User settings"
+                android:orderInCategory="20"
+                android:visible="true" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/aboutUs"
+        android:orderInCategory="20"
+        android:title="About us"
+        app:showAsAction="never"
+        android:visible="true" />
+
